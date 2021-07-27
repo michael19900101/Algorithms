@@ -1,7 +1,7 @@
 package com.aotuman.leetcode;
 
 /**
- * 删除有序数组的重复项
+ * 删除有序数组的重复项 （双指针）
  * 输入：nums = [1,1,2]
  * 输出：2, nums = [1,2]
  *

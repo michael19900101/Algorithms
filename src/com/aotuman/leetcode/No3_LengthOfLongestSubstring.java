@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 无重复字符的最长子串
+ * 无重复字符的最长子串 （滑动窗口）
  *
  * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
  * 输入: s = "abcabcbb"
