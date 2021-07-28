@@ -1,56 +1,55 @@
 package com.aotuman.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
- * 二叉树的前序遍历（递归、迭代）
+ * 二叉树的中序遍历（递归、迭代）
  *
- * 描述：
- * 给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
- *
- * Input: [1,null,2,3]
+ * 输入: [1,null,2,3]
  *    1
  *     \
  *      2
  *     /
  *    3
- * Output: [1,2,3]
+ *
+ * 输出: [1,3,2]
  */
-public class No144_PreorderTraversal {
+public class No94_InorderTraversal {
 
     public static void main(String[] args) {
-        No144_PreorderTraversal solution = new No144_PreorderTraversal();
+        No94_InorderTraversal solution = new No94_InorderTraversal();
         TreeNode root = solution.testData();
-        solution.preorderTraversal(root);
-//        solution.preorderTraversal2(root);
+        solution.inorderTraversal(root);
+//        solution.inorderTraversal2(root);
     }
 
     /**
      * 一、递归方式
      */
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        preorderTraversal(root, res);
+        inorderTraversal(root, res);
         return res;
     }
 
-    public List<Integer> preorderTraversal(TreeNode root, List<Integer> list) {
+    public List<Integer> inorderTraversal(TreeNode root, List<Integer> list) {
         if (root == null) return list;
-        list.add(root.val);
         if (root.left != null) {
-            preorderTraversal(root.left, list);
+            inorderTraversal(root.left, list);
         }
+        list.add(root.val);
         if (root.right != null) {
-            preorderTraversal(root.right, list);
+            inorderTraversal(root.right, list);
         }
         return list;
     }
 
-
     /**
      * 二、迭代方式
      */
-    public List<Integer> preorderTraversal2(TreeNode root) {
+    public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
         Stack<TreeNode> stack = new Stack<>();
@@ -59,18 +58,17 @@ public class No144_PreorderTraversal {
             while (rootNode != null) {
                 // 根节点入栈
                 stack.push(rootNode);
-                // 根节点值保存到结果集合
-                res.add(rootNode.val);
                 // 左子节点作为根节点遍历下一层
                 rootNode = rootNode.left;
             }
             // 找不到左子节点，先把上一层的左子节点出栈，
             // rootNode指向上一层的左子节点，开始找rootNode的右子节点
             rootNode = stack.pop();
+            // 根节点值（上一层的左子节点）保存到结果集合
+            res.add(rootNode.val);
             // 右子节点作为根节点遍历下一层
             rootNode = rootNode.right;
         }
-
         return res;
     }
 
