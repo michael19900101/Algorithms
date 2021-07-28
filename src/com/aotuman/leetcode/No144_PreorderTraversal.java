@@ -34,16 +34,11 @@ public class No144_PreorderTraversal {
         return res;
     }
 
-    public List<Integer> preorderTraversal(TreeNode root, List<Integer> list) {
-        if (root == null) return list;
+    public void preorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) return;
         list.add(root.val);
-        if (root.left != null) {
-            preorderTraversal(root.left, list);
-        }
-        if (root.right != null) {
-            preorderTraversal(root.right, list);
-        }
-        return list;
+        preorderTraversal(root.left, list);
+        preorderTraversal(root.right, list);
     }
 
 
@@ -54,23 +49,21 @@ public class No144_PreorderTraversal {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode rootNode = root;
-        while (!stack.isEmpty() || rootNode != null) {
-            while (rootNode != null) {
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
                 // 根节点入栈
-                stack.push(rootNode);
+                stack.push(root);
                 // 根节点值保存到结果集合
-                res.add(rootNode.val);
+                res.add(root.val);
                 // 左子节点作为根节点遍历下一层
-                rootNode = rootNode.left;
+                root = root.left;
             }
             // 找不到左子节点，先把上一层的左子节点出栈，
             // rootNode指向上一层的左子节点，开始找rootNode的右子节点
-            rootNode = stack.pop();
+            root = stack.pop();
             // 右子节点作为根节点遍历下一层
-            rootNode = rootNode.right;
+            root = root.right;
         }
-
         return res;
     }
 
