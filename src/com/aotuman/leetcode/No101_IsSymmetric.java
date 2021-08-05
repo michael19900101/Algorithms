@@ -21,6 +21,9 @@ public class No101_IsSymmetric {
     }
 
     // 递归方式
+    // 对称条件：
+    // 左子树的左孩子 = 右子树的右孩子
+    // 左子树的右孩子 = 右子树的左孩子
     public boolean check(TreeNode leftTree, TreeNode rightTree){
         if (leftTree == null && rightTree == null) return true;
         if (leftTree == null || rightTree == null) return false;
